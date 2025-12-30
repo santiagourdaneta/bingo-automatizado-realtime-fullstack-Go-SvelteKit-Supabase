@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🛡️ Husky: Iniciando inspección de seguridad..."
+
+# 1. Validar Svelte/JS
+npx lint-staged
+
+# 2. Validar Go (El motor)
+cd motor-go && go fmt ./... && go vet ./... && cd ..
+
+echo "✅ Inspección finalizada. Código seguro para despegar."
